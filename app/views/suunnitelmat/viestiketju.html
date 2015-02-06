@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<h2>paras järjestämisalgoritmi?
+    &ensp;<small>- viestiketju aihealueessa <a href="#">Ohjelmointi</a></small>
+</h2>
+
+<div style="background-color: #d6ebe0">
+    <blockquote>
+    <ul class="list-inline">
+        <li><strong>Janne</strong></li>
+        <li>4.2.2015</li>
+        <li>15:45</li>        
+    </ul>
+    <p>
+        Hei mikä on teidän mielestä paras järjestämisalgoritmi?
+    </p>
+    </blockquote>
+</div>
+<div style="background-color: #d6ebe0">
+    <blockquote>
+    <ul class="list-inline">
+        <li><strong>Kepa</strong></li>
+        <li>4.2.2015</li>
+        <li>18:09</li>
+    </ul>
+    <p>
+        Lisäysjärjestäminen on paras, koska se on niin nopea. Se on myös helppo koodata.
+    </p>
+    </blockquote>
+</div>
+
+<form>
+    <div class="form-group">
+        <label>Uusi viesti:</label>
+        <textarea class="form-control"></textarea>
+    </div>
+       <button type="submit" class="btn btn-default">Lisää</button>
+</form>
+
+{% endblock %}

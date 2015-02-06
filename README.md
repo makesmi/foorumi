@@ -24,6 +24,7 @@ Lisäksi käyttäjälista tulee näkymään vain ylläpitäjille.
 Tässä on näkymäsuunnitelmat:
 
 http://markumus.users.cs.helsinki.fi/foorumi/etusivu
+http://markumus.users.cs.helsinki.fi/foorumi/etusivu_yllapito
 http://markumus.users.cs.helsinki.fi/foorumi/aihealue
 http://markumus.users.cs.helsinki.fi/foorumi/viestiketju
 http://markumus.users.cs.helsinki.fi/foorumi/uusiketju

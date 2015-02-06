@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<h2>Käyttäjät:</h2>
+<table class="table table-striped table-bordered">
+    <thead>
+        <th>Käyttäjänimi</th>
+        <th>rekisteröitynyt</th>
+        <th>viestejä</th>
+        <th></th>
+    </thead>
+    
+    <tbody>
+        <!-- tähän tulee käyttäjät -->
+        <tr>
+            <td><strong>Janne</strong></td>
+            <td>1.2.2015</td>
+            <td>5</td>
+            <td><button>bannaa</button><button>ylläpitäjäksi</button></td>
+        </tr>
+
+        <tr>
+            <td><strong>Kepa</strong></td>
+            <td>4.2.2015</td>
+            <td>3</td>
+            <td><button>peru bannaus</button><button>ylläpitäjäksi</button></td>
+        </tr>
+        
+        <tr>
+            <td><strong>Pythagoras</strong></td>
+            <td>13.1.2015</td>
+            <td>8</td>
+            <td><button disabled="disabled">bannaa</button><button disabled="disabled">ylläpitäjäksi</button></td>
+        </tr>
+        
+        
+    </tbody>
+</table>
+{% endblock %}

@@ -11,6 +11,10 @@
   $app->get('/etusivu', function() {
       HelloWorldController::etusivu();
   });
+  
+  $app->get('/etusivu_yllapito', function() {
+      HelloWorldController::etusivu_yllapito();
+  });
 
   $app->get('/aihealue', function() {
       
@@ -25,6 +29,18 @@
   $app->get('/uusiketju', function() {
       
       HelloWorldController::uusiKetju();
+  });
+  
+  $app->get('/kayttajat', function() {
+      
+      HelloWorldController::kayttajat();
+  });
+  
+  $app->get('/rekist', function() {
+      HelloWorldController::rekist();
+  });
+  $app->get('/muokkaus', function() {
+      HelloWorldController::muokkaus();
   });
   
   

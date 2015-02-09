@@ -7,6 +7,20 @@ CREATE TABLE Kayttaja(
 	rekist_aika timestamp NOT NULL
 );
 
+
+CREATE TABLE Aihealue(
+	id SERIAL PRIMARY KEY,
+	nimi varchar(64) NOT NULL,
+	selitys varchar(256) NOT NULL
+);
+
+CREATE TABLE Viestiketju(
+	id SERIAL PRIMARY KEY,
+	otsikko varchar(128) NOT NULL,
+	alue integer REFERENCES Aihealue(id)
+);
+
+
 CREATE TABLE Viesti(
 	id SERIAL PRIMARY KEY,
 	sisalto varchar(5000) NOT NULL,
@@ -16,19 +30,9 @@ CREATE TABLE Viesti(
 	kirjoittaja varchar(32) REFERENCES Kayttaja(tunnus)
 );
 
-CREATE TABLE Viestiketju(
-	id SERIAL PRIMARY KEY,
-	otsikko varchar(128) NOT NULL,
-	alue integer REFERENCES Aihealue(id)
-);
-
-CREATE TABLE Aihealue(
-	id SERIAL PRIMARY KEY,
-	nimi varchar(64) NOT NULL,
-	selitys varchar(256) NOT NULL
-);
 
 CREATE TABLE Luettu(
-	kayttaja varchar(32) PRIMARY KEY REFERENCES Kayttaja(tunnus),
-	viesti INTEGER PRIMARY KEY REFERENCES Viesti(id)
+	kayttaja varchar(32) NOT NULL REFERENCES Kayttaja(tunnus),
+	viesti INTEGER NOT NULL REFERENCES Viesti(id),
+        PRIMARY KEY(kayttaja, viesti)
 );

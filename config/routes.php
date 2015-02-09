@@ -32,8 +32,7 @@
   });
   
   $app->get('/kayttajat', function() {
-      
-      HelloWorldController::kayttajat();
+      KayttajaOhjain::kayttajaLista();
   });
   
   $app->get('/rekist', function() {

@@ -1,5 +1,9 @@
 <?php
 
+
+require 'app/models/kayttaja.php';
+
+
   class HelloWorldController extends BaseController{
 
     public static function index(){
@@ -26,14 +30,11 @@
     public static function uusiKetju(){
         self::render_view('suunnitelmat/uusiketju.html');
     }
+
     public static function kayttajat(){
         self::render_view('suunnitelmat/kayttajat.html');
     }
-    
-    public static function sandbox(){
-        self::render_view('helloworld.html');
-    }
-    
+
     public static function rekist(){
         self::render_view('suunnitelmat/rekist.html');
     }
@@ -41,4 +42,19 @@
     public static function muokkaus(){
         self::render_view('suunnitelmat/muokkaus.html');
     }
-  }
+    
+    public static function sandbox(){
+        echo '<table>';
+        $kayttajat = Kayttaja::haeKaikki();
+        foreach($kayttajat as $kayttaja){
+            echo '<tr>';
+            echo '<td>' . $kayttaja->tunnus . '</td>';
+            echo '<td>' . $kayttaja->salasana . '</td>';
+            echo '<td>' . $kayttaja->rekist_aika . '</td>';
+            echo '<td>' . $kayttaja->yllapitaja. '</td>';
+            echo '</tr>';
+        }
+        echo '</table>';
+    }
+    
+}

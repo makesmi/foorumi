@@ -1,0 +1,2 @@
+- relaatiokaaviosta puuttuu Käyttäjältä bannattu-attribuutti
+- sama puuttuu myös oikeasta tietokannasta

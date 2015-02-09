@@ -4,6 +4,7 @@ CREATE TABLE Kayttaja(
 	tunnus varchar(32) PRIMARY KEY,
 	salasana varchar(32) NOT NULL,
 	yllapitaja boolean DEFAULT FALSE,
+        bannattu boolean DEFAULT FALSE,
 	rekist_aika timestamp NOT NULL
 );
 

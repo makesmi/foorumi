@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<h2>Käyttäjät:</h2>
+<table class="table table-striped table-bordered">
+    <thead>
+        <th>Käyttäjänimi</th>
+        <th>rekisteröitynyt</th>
+        <th>viestejä</th>
+        <th></th>
+    </thead>
+    
+    <tbody>
+        <!-- tähän tulee käyttäjät -->
+        {% for kayttaja in kayttajat %}
+        <tr>
+            <td><strong>{{kayttaja.tunnus}}</strong></td>
+            <td>{{kayttaja.rekist_aika}}</td>
+            <td>{{kayttaja.yllapitaja}}</td>
+            <td><button>bannaa</button><button>ylläpitäjäksi</button></td>
+        </tr>
+
+        {% endfor %}
+        
+    </tbody>
+</table>
+{% endblock %}

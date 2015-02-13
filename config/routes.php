@@ -21,13 +21,11 @@
       HelloWorldController::aihealue();
   });
   
-  $app->get('/viestiketju', function() {
-      
+  $app->get('/viestiketju', function() {      
       HelloWorldController::viestiketju();
   });
   
   $app->get('/uusiketju', function() {
-      
       HelloWorldController::uusiKetju();
   });
   
@@ -42,4 +40,8 @@
       HelloWorldController::muokkaus();
   });
   
+  
+ $app->post('/muuta_kayttajaa/:tunnus', function($tunnus){
+     KayttajaOhjain::muutaKayttajaa($tunnus);
+ });
   

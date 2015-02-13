@@ -17,8 +17,22 @@
         <tr>
             <td><strong>{{kayttaja.tunnus}}</strong></td>
             <td>{{kayttaja.rekist_aika}}</td>
-            <td>{{kayttaja.yllapitaja}}</td>
-            <td><button>bannaa</button><button>ylläpitäjäksi</button></td>
+            <td>{{viesteja[kayttaja.tunnus]}}</td>
+            <td>
+                <form method="post" action="{{base_path}}/muuta_kayttajaa/{{kayttaja.tunnus}}">
+                    {% if kayttaja.bannattu %}
+                        <button type="submit" name="muutos" value="-bannattu">poista bannaus</button>
+                    {% else %}
+                        <button type="submit" name="muutos" value="+bannattu">bannaa</button>
+                    {% endif %}
+                    
+                    {% if kayttaja.yllapitaja %}
+                        <button type="submit" name="muutos" value="-yllapitaja">poista ylläpitäjä</button>
+                    {% else %}
+                        <button type="submit" name="muutos" value="+yllapitaja">ylläpitäjäksi</button>
+                    {% endif %}
+                </form>
+            </td>
         </tr>
 
         {% endfor %}

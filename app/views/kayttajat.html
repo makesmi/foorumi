@@ -15,7 +15,13 @@
         <!-- tähän tulee käyttäjät -->
         {% for kayttaja in kayttajat %}
         <tr>
-            <td><strong>{{kayttaja.tunnus}}</strong>
+            <td><strong>
+                {% if kayttaja == kirjautunut_kayttaja %}    
+                    <font color="green">{{kayttaja.tunnus}}</font>
+                {% else %}
+                    {{kayttaja.tunnus}}
+                {% endif %}
+                </strong>
                 {% if kayttaja.bannattu == true %}
                     <font color="red">&nbsp[BANNATTU]</font>
                 {% endif %}
@@ -26,6 +32,8 @@
             <td>{{kayttaja.rekist_aika}}</td>
             <td>{{viesteja[kayttaja.tunnus]}}</td>
             <td>
+                <!-- itseään ei voi bannata tai poisttaa ylläpitäjyyttä -->
+                {% if kayttaja != kirjautunut_kayttaja %}
                 <form method="post" action="{{base_path}}/muuta_kayttajaa/{{kayttaja.tunnus}}">
                     {% if kayttaja.bannattu == true %}
                         <input type="submit" name="submit" value="poista bannaus">
@@ -39,6 +47,7 @@
                         <input type="submit" name="submit" value="ylläpitäjäksi">
                     {% endif %}
                 </form>
+                {% endif %}
             </td>
         </tr>
 

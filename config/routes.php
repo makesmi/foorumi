@@ -44,6 +44,10 @@
   $app->get('/virhe', function() {
       HelloWorldController::virhe();
   });
+ 
+ $app->get('/kirjaudu_ulos', function(){
+     KayttajaOhjain::kirjaudu_ulos();
+ });
   
  $app->post('/kirjaudu', function(){
      KayttajaOhjain::kirjaudu();

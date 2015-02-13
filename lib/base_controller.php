@@ -2,13 +2,28 @@
 
   class BaseController{
 
-    public static function get_user_logged_in(){
-      // Toteuta kirjautuneen käyttäjän haku tähän
-      return null;
+    public static function get_user_logged_in(){        
+        if(isset($_SESSION['kayttaja'])){
+            $tunnus = $_SESSION['kayttaja'];
+            return Kayttaja::haeTunnuksella($tunnus);
+        }else{
+            return null;
+        }
     }
 
+    //kirjautumisen tarkistus - MUISTA AINA
     public static function check_logged_in(){
-      // Toteuta kirjautumisen tarkistus tähän
+        if(!isset($_SESSION['kayttaja'])){
+            self::redirect_to('/virhe', array('viesti' => 'Et ole kirjautunut sisään!'));
+        }
+    }
+    
+    public static function tarksita_onko_yllapitaja(){
+        self::check_logged_in();
+        $kayttaja = self::get_user_logged_in();
+        if(!$kayttaja->yllapitaja){
+            self::redirect_to('/virhe', array('viesti' => 'Et ole ylläpitäjä!'));
+        }
     }
 
     public static function render_view($view, $content = array()){
@@ -32,7 +47,10 @@
         $content['base_path'] = self::base_path();
 
         if(method_exists(__CLASS__, 'get_user_logged_in')){
-          $content['user_logged_in'] = self::get_user_logged_in();
+          $kayttaja = self::get_user_logged_in(); 
+          $content['kirjautunut_kayttaja'] = $kayttaja;
+          $content['kirjautunut_yllapitaja'] = 
+                  $kayttaja != null ? $kayttaja->yllapitaja : false;
         }
 
         echo $twig->render($view, $content);

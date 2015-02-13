@@ -15,21 +15,28 @@
         <!-- tähän tulee käyttäjät -->
         {% for kayttaja in kayttajat %}
         <tr>
-            <td><strong>{{kayttaja.tunnus}}</strong></td>
+            <td><strong>{{kayttaja.tunnus}}</strong>
+                {% if kayttaja.bannattu == true %}
+                    <font color="red">&nbsp[BANNATTU]</font>
+                {% endif %}
+                {% if kayttaja.yllapitaja == true %}
+                    <font color="blue">&nbsp;[YLLÄPITÄJÄ]</font>
+                {% endif %}
+            </td>
             <td>{{kayttaja.rekist_aika}}</td>
             <td>{{viesteja[kayttaja.tunnus]}}</td>
             <td>
                 <form method="post" action="{{base_path}}/muuta_kayttajaa/{{kayttaja.tunnus}}">
-                    {% if kayttaja.bannattu %}
-                        <button type="submit" name="muutos" value="-bannattu">poista bannaus</button>
+                    {% if kayttaja.bannattu == true %}
+                        <input type="submit" name="submit" value="poista bannaus">
                     {% else %}
-                        <button type="submit" name="muutos" value="+bannattu">bannaa</button>
+                        <input type="submit" name="submit" value="bannaa">
                     {% endif %}
                     
-                    {% if kayttaja.yllapitaja %}
-                        <button type="submit" name="muutos" value="-yllapitaja">poista ylläpitäjä</button>
+                    {% if kayttaja.yllapitaja == true %}
+                        <input type="submit" name="submit" value="poista ylläpitäjä">
                     {% else %}
-                        <button type="submit" name="muutos" value="+yllapitaja">ylläpitäjäksi</button>
+                        <input type="submit" name="submit" value="ylläpitäjäksi">
                     {% endif %}
                 </form>
             </td>

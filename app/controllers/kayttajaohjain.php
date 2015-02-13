@@ -4,7 +4,22 @@ require 'app/models/kayttaja.php';
 
 class KayttajaOhjain extends BaseController{
 
+    public static function kirjaudu(){
+        $tunnus = $_POST['tunnus'];
+        $salasana = $_POST['salasana'];
+        $kayttaja = Kayttaja::tunnistaKayttaja($tunnus, $salasana);
+        
+        if($kayttaja == null){
+            self::redirect_to('/virhe', array('viesti' => 'Tunnus tai salasana on virheellinen!'));
+        }else{
+            $_SESSION['kayttaja'] = $kayttaja->tunnus;
+            self::redirect_to('/etusivu');
+        }
+    }
+    
     public static function kayttajaLista(){
+        self::tarksita_onko_yllapitaja();
+        
         $kayttajat = Kayttaja::haeKaikki();
         $viestit = array();
         foreach ($kayttajat as $k => $kayttaja){
@@ -16,16 +31,17 @@ class KayttajaOhjain extends BaseController{
     }
     
     public static function muutaKayttajaa($tunnus){
+        self::tarksita_onko_yllapitaja();
         $kayttaja = Kayttaja::haeTunnuksella($tunnus);
-        $muutos = $_POST['muutos'];
+        $muutos = $_POST['submit'];
         
-        if($muutos == '+bannattu'){
+        if($muutos == 'bannaa'){
             $kayttaja->asetaBannaus(true);
-        }else if($muutos == '-bannattu'){
+        }else if($muutos == 'poista bannaus'){
             $kayttaja->asetaBannaus(false);
-        }else if($muutos == '+yllapitaja'){
+        }else if($muutos == 'ylläpitäjäksi'){
             $kayttaja->asetaYllapitajaksi(true);
-        }else if($muutos == '-yllapitaja'){
+        }else if($muutos == 'poista ylläpitäjä'){
             $kayttaja->asetaYllapitajaksi(false);
         }
         

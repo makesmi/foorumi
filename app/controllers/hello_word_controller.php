@@ -43,6 +43,15 @@ require 'app/models/kayttaja.php';
         self::render_view('suunnitelmat/muokkaus.html');
     }
     
+    public static function virhe(){
+        if(isset($_GET['viesti'])){
+            $viesti = $_GET['viesti'];
+        }else{
+            $viesti = "";
+        }
+        self::render_view('virhe.html', array('viesti' => $viesti));
+    }
+    
     public static function sandbox(){
         echo '<table>';
         $kayttajat = Kayttaja::haeKaikki();

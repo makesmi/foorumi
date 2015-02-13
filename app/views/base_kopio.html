@@ -40,16 +40,15 @@
           <ul class="nav navbar-nav">
             <!-- Navigaation linkit -->
             <li><a href="{{base_path}}">Etusivu</a></li>
-            {% if kirjautunut_kayttaja == null %}
-                <li><a href="{{base_path}}/rekist">rekisteröidy</a></li>
-            {% endif %}
-            <li>
- 
+            <li><a href="{{base_path}}/rekist">rekisteröidy</a></li>
+          </ul>
             &ensp;
-            {% if kirjautunut_kayttaja %}
-                <strong><font color="green">{{kirjautunut_kayttaja.tunnus}}</font></strong> kirjautunut.
+<!-->            
+            {% if user_logged_in %}
+                <strong><font color="green">{{user_logged_in}}</font></strong>
+                &nbsp;kirjautunut.
             {% else %}
-                <form class="form-inline" method="post" action="{{base_bath}}/foorumi/kirjaudu">
+                <form class="form-inline" method="post" action="{{base_bath}}/kirjaudu">
 
                     <label>Sisäänkirjautuminen:</label>
 
@@ -65,10 +64,9 @@
 
                     <button type="submit" class="btn-primary">Kirjaudu</button>
                 </form>
- 
-            {% endif %}
-         </li></ul>
-       </div>
+
+            {% endif %}</!-->
+        </div>
           
         <div class="navbar-right">
         </div>

@@ -36,6 +36,7 @@
           <a class="navbar-brand" href="{{base_path}}">Keskustelufoorumi</a>
         </div>
 
+          
         <div class="collapse navbar-collapse" id="navigation">
           <ul class="nav navbar-nav">
             <!-- Navigaation linkit -->
@@ -44,7 +45,7 @@
                 <li><a href="{{base_path}}/kayttajat">käyttäjät</a></li>
             {% endif %}
             {% if kirjautunut_kayttaja == null %}
-                <li><a href="{{base_path}}/rekist">rekisteröidy</a></li>
+                <li><a href="{{base_path}}/rekist/normaali">rekisteröidy</a></li>
             {% endif %}
  
             &ensp;
@@ -78,8 +79,18 @@
       </div>
     </nav>
 
+      
+      
     <div id="main-container">
-      <!-- Dynaaminen sisältö tulee tähän -->
+
+        {% if virheviesti %}
+            <h3><font color="red">VIHRE: {{virheviesti}}</font></h3>
+        {% endif %}
+        {% if ilmoitusviesti %}
+            <h3><font color="green">{{ilmoitusviesti}}</font></h3>
+        {% endif %}
+        
+        <!-- Dynaaminen sisältö tulee tähän -->
       {% block content %}{% endblock %}
     </div>
 

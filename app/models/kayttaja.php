@@ -53,7 +53,6 @@ class Kayttaja extends BaseModel{
     public static function lisaaKayttaja($tunnus, $salasana){
         DB::query('INSERT INTO Kayttaja (tunnus, salasana, rekist_aika) VALUES  (:ktun, :pw, :aika)',
                 array('ktun' => $tunnus, 'pw' => $salasana, 'aika' => Kayttaja::haeNykyHetki()));
-        return haeTunnuksella($tunnus);
     }
     
     public static function tunnistaKayttaja($tunnus, $salasana){

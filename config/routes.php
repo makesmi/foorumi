@@ -9,7 +9,7 @@
   });
   
   $app->get('/etusivu', function() {
-      HelloWorldController::etusivu();
+      AlueOhjain::etusivu();
   });
   
   $app->get('/etusivu_yllapito', function() {
@@ -33,8 +33,8 @@
       KayttajaOhjain::kayttajaLista();
   });
   
-  $app->get('/rekist', function() {
-      HelloWorldController::rekist();
+  $app->get('/rekist/:tila', function($tila) {
+      KayttajaOhjain::rekisterointilomake($tila);
   });
 
   $app->get('/muokkaus', function() {
@@ -48,7 +48,12 @@
  $app->get('/kirjaudu_ulos', function(){
      KayttajaOhjain::kirjaudu_ulos();
  });
-  
+ 
+ $app->get('/poista_alue/:id', function($id){
+     AlueOhjain::poistaAlue($id);
+ });
+
+   
  $app->post('/kirjaudu', function(){
      KayttajaOhjain::kirjaudu();
  });
@@ -56,3 +61,8 @@
  $app->post('/muuta_kayttajaa/:tunnus', function($tunnus){
      KayttajaOhjain::muutaKayttajaa($tunnus);
  });
+
+ $app->post('/rekisteroi', function(){
+     KayttajaOhjain::kasittele_rekisterointi();
+ });
+ 

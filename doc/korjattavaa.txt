@@ -1,0 +1,1 @@
+- tunnuksen ja salasanan muoto täytyy tarkistaa, ettei ole erikoismerkkejä, eikä liian pitkiä

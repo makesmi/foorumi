@@ -5,19 +5,23 @@
   });
 
   $app->get('/hiekkalaatikko', function() {
-    HelloWorldController::sandbox();
+//      TestiOhjain::hiekkalaatikko();
+    KayttajaOhjain2::testi();
   });
   
   $app->get('/etusivu', function() {
       AlueOhjain::etusivu();
   });
   
+  $app->get('/etusivu/:tila', function($tila){
+      AlueOhjain::etusivu($tila);
+  });
+  
   $app->get('/etusivu_yllapito', function() {
       HelloWorldController::etusivu_yllapito();
   });
 
-  $app->get('/aihealue', function() {
-      
+  $app->get('/aihealue', function() {      
       HelloWorldController::aihealue();
   });
   
@@ -47,13 +51,12 @@
  
  $app->get('/kirjaudu_ulos', function(){
      KayttajaOhjain::kirjaudu_ulos();
- });
+});
  
  $app->get('/poista_alue/:id', function($id){
      AlueOhjain::poistaAlue($id);
  });
-
-   
+ 
  $app->post('/kirjaudu', function(){
      KayttajaOhjain::kirjaudu();
  });
@@ -65,4 +68,9 @@
  $app->post('/rekisteroi', function(){
      KayttajaOhjain::kasittele_rekisterointi();
  });
+ 
+ $app->post('/uusi_alue', function(){
+     AlueOhjain::uusiAlue();
+ });
+ 
  

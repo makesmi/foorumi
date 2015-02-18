@@ -1,5 +1,7 @@
 <?php
 
+require_once 'app/models/kayttaja.php';
+
   class BaseController{
 
     public static function get_user_logged_in(){        
@@ -52,7 +54,7 @@
           $content['kirjautunut_yllapitaja'] = 
                   $kayttaja != null ? $kayttaja->yllapitaja : false;
         }
-
+        
         echo $twig->render($view, $content);
       } catch (Exception $e){
         die('Virhe näkymän näyttämisessä: ' . $e->getMessage());

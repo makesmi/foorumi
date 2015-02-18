@@ -1,15 +1,9 @@
 <?php
 
 
-require 'app/models/kayttaja.php';
 
+class HelloWorldController extends BaseController{
 
-  class HelloWorldController extends BaseController{
-
-    public static function index(){
-        echo 'Tämä on etusivu!';
-    }
-    
     public static function etusivu_yllapito(){
         self::render_view('suunnitelmat/etusivu_yllapito.html');
     }
@@ -24,7 +18,6 @@ require 'app/models/kayttaja.php';
     
     public static function viestiketju(){
         self::render_view('suunnitelmat/viestiketju.html');
-        
     }
     
     public static function uusiKetju(){
@@ -53,17 +46,7 @@ require 'app/models/kayttaja.php';
     }
     
     public static function sandbox(){
-        echo '<table>';
-        $kayttajat = Kayttaja::haeKaikki();
-        foreach($kayttajat as $kayttaja){
-            echo '<tr>';
-            echo '<td>' . $kayttaja->tunnus . '</td>';
-            echo '<td>' . $kayttaja->salasana . '</td>';
-            echo '<td>' . $kayttaja->rekist_aika . '</td>';
-            echo '<td>' . $kayttaja->yllapitaja. '</td>';
-            echo '</tr>';
-        }
-        echo '</table>';
+        echo 'poooooo';
     }
     
 }

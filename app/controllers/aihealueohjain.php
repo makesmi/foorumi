@@ -5,8 +5,7 @@ require 'app/models/aihealue.php';
 
 class AlueOhjain extends BaseController{
     
-    public function etusivu(){
-        
+    public function etusivu($tila = null){
         $alueet = Aihealue::haeAlueet();
         $linkit = array();
         $viesteja = array();
@@ -23,9 +22,23 @@ class AlueOhjain extends BaseController{
                     'viesteja' => $viesteja, 'ketjuja' => $ketjuja));
     }
     
-    public function poistaAlue($id){
+    public static function testi(){
+        echo 'testi toimii';
+    }
+    
+    public static function poistaAlue($id){
         AiheAlue::poistaAlue($id);
         self::render_view('etusivu.html', 
                 array('ilmoitusviesti' => 'aihealue poistettu.'));
+    }
+    
+    public static function uusiAlue(){
+        $parametrit = $_POST;
+        $otsikko = $parametrit['otsikko'];
+        $selitys = $parametrit['selitys'];
+        
+        Aihealue::lisaaAlue($otsikko, $selitys);
+        
+        self::redirect_to('/etusivu');
     }
 }

@@ -8,9 +8,11 @@ class Viestiketju extends BaseModel{
         parent::__construct($parametrit);
     }
     
-    public function lisaaKetju($aihealue, $otsikko){
-        DB::query('INSERT INTO Viestiketju () values (:alue, :otsikko)',
+    public static function lisaaKetju($aihealue, $otsikko){
+        $rivit = DB::query('INSERT INTO Viestiketju () values (:alue, :otsikko) RETURNING id',
                 array('alue' => $aihealue, 'otsikko' => $otsikko));
+        
+        return $rivit[0][0];
     }
     
     public function haeKetjut($aihealue){

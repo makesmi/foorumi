@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<h2>Uusi viestiketju aihealueeseen <a href="#">Ohjelmointi</a></h2>
+<br>
+
+<form>
+    
+    <div class="form-group">
+        <label>Viestiketjun otsikko:</label>
+        <input type="text" class="form-control">
+    </div>
+    
+    <div class="form-group">
+        <label>Aloitusviesti:</label>
+        <textarea class="form-control" rows="9"></textarea>
+    </div>
+       <button type="submit" class="btn btn-default">Luo</button>
+</form>
+
+{% endblock %}

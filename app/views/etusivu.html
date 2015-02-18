@@ -36,10 +36,20 @@
 
 {% if kirjautunut_yllapitaja %}
     <h3>uusi aihealue:</h3>
-    <form method="post" action="uusialue">
-        <div class="form-group">
-            <label for=""><input type="text"></label>
+    <form method='post' action='{{base_path}}/uusi_alue'>
+        <div class='form-group'>
+            <label for='otiskko'>otsikko:</label>
+            <input type='text' class='form-control' name='otsikko' id='otsikko' />
         </div>
+
+        <div class='form-group'>
+            <label for='selitys'>selitys:</label>
+            <textarea class='form-control' name='selitys' id='selitys'>
+            </textarea>
+        </div>
+
+        <button type='submit' class='btn btn-success'>lisää</button>
     </form>
 {% endif %}
+
 {% endblock %}

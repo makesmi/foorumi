@@ -1,6 +1,6 @@
 <?php
 
-require 'app/models/kayttaja.php';
+require_once 'app/models/kayttaja.php';
 
 class KayttajaOhjain extends BaseController{
 
@@ -18,8 +18,9 @@ class KayttajaOhjain extends BaseController{
     }
     
     public static function kirjaudu_ulos(){
-        $kayttaja = self::get_user_logged_in();
-        unset($_SESSION['kayttaja']);
+        if(isset($_SESSION['kayttaja'])){
+            unset($_SESSION['kayttaja']);
+        }
         self::redirect_to('/etusivu');
     }
     

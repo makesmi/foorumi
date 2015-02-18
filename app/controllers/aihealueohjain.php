@@ -12,13 +12,13 @@ class AlueOhjain extends BaseController{
         $ketjuja = array();
         
         foreach($alueet as $avain => $alue){
-            $linkit[$alue->id] = 'viestiketju/' . $alue->id;
+            $linkit[$alue->id] = 'aihealue/' . $alue->id;
             $ketjuja[$alue->id] = $alue->ketjuja();
             $viesteja[$alue->id] = $alue->viesteja();
         }
         
         self::render_view('etusivu.html', 
-                array('alueet' => $alueet, 'linkit' => $linkit,
+                array('aihealueet' => $alueet, 'linkki' => $linkit,
                     'viesteja' => $viesteja, 'ketjuja' => $ketjuja));
     }
     

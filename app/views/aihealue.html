@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<h2>{{aihealue.nimi}}<br><small>{{aihealue.selitys}}</small></h2>
+
+{% if kirjautunut_kayttaja %}
+    <button>uusi viestiketju</button>
+{% endif %}
+<br />
+<br />
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Viestiketjut</th>
+            <th>Viestejä</th>
+            <th>Aloittaja</th>
+        </tr>
+    </thead>
+
+    {% for ketju in viestiketjut %}
+    
+        <tbody>
+            <!-- tähän tulee viestiketjut -->
+            <tr>
+                <td><a href="#"><strong>{{ketju.otsikko}}</strong></a></td>
+                <td>{{viesteja[ketju.id]}}</td>
+                <td>{{aloittajat[ketju.id]}}</td>
+            </tr>
+
+        </tbody>
+    {% endfor %}
+        
+</table>
+{% endblock %}

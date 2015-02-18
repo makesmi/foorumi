@@ -11,6 +11,8 @@ class KayttajaOhjain extends BaseController{
         
         if($kayttaja == null){
             self::redirect_to('/virhe', array('viesti' => 'Tunnus tai salasana on virheellinen!'));
+        }else if($kayttaja->bannattu){
+            self::redirect_to('/virhe', array('viesti' => 'Sinut on bannattu!'));
         }else{
             $_SESSION['kayttaja'] = $kayttaja->tunnus;
             self::redirect_to('/etusivu');

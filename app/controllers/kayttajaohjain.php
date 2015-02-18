@@ -62,7 +62,7 @@ class KayttajaOhjain extends BaseController{
     }
     
     public static function kayttajaLista(){
-        self::tarksita_onko_yllapitaja();
+        self::tarkista_onko_yllapitaja();
         
         $kayttajat = Kayttaja::haeKaikki();
         $viestit = array();
@@ -75,7 +75,7 @@ class KayttajaOhjain extends BaseController{
     }
     
     public static function muutaKayttajaa($tunnus){
-        self::tarksita_onko_yllapitaja();
+        self::tarkista_onko_yllapitaja();
         $kayttaja = Kayttaja::haeTunnuksella($tunnus);
         $muutos = $_POST['submit'];
         

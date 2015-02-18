@@ -20,7 +20,7 @@ require_once 'app/models/kayttaja.php';
         }
     }
     
-    public static function tarksita_onko_yllapitaja(){
+    public static function tarkista_onko_yllapitaja(){
         self::check_logged_in();
         $kayttaja = self::get_user_logged_in();
         if(!$kayttaja->yllapitaja){

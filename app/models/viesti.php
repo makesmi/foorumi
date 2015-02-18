@@ -1,7 +1,7 @@
 <?php
 
 class Viesti extends BaseModel{
-    public $id, $ketju, $kirjoittaja, $sisältö, $aika, $muokkausaika;
+    public $id, $ketju, $kirjoittaja, $sisalto, $aika, $muokkausaika;
     
     public function __construct($parametrit = null) {
         parent::__construct($parametrit);
@@ -9,7 +9,28 @@ class Viesti extends BaseModel{
     
     /* hakee halutun viestiketjun viestit kirjoittamisjärjestyksessä */
     public static function haeViestit($ketjuid){
+        $rivit = DB::query('SELECT * FROM Viesti WHERE ketju=:ketjuid ORDER BY id', 
+                array('ketjuid' => $ketjuid));
         
+        $viestit = array();
+        
+        foreach($rivit as $avain => $rivi){
+            $viestit[] = new Viesti($rivi);
+        }
+        
+        return $viestit;
+    }
+    
+    public function muutaSisaltoa($uusiSisalto){
+        $this->sisalto = $uusiSisalto;
+        DB::query('UPDATE Viesti SET sisalto=:sisalto, muokkausaika=:aika WHERE id=:viestiid',
+                array('sisalto' => $uusiSisalto, 'aika' => self::haeNykyHetki(), 
+                    'viestiid' => $this->id));
+    }
+    
+    public function poista(){
+        DB::query('DELETE FROM Viesti WHERE id=:viestiid', 
+                array('viestiid' => $this->id));
     }
     
     /* parametreiksi tulee ketjun id ja kirjoittajan tunnus */

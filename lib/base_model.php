@@ -26,4 +26,10 @@
       return $errors;
     }
 
+    //palauttaa nykyhetken suomen ajassa Postgresql:lle sopivassa muodossa '2001-09-11 08:46:06'
+    public static function haeNykyHetki(){
+        return date("Y-m-d H:i:s");
+    }
+
+
   }

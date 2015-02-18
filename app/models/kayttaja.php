@@ -53,7 +53,7 @@ class Kayttaja extends BaseModel{
     
     public static function lisaaKayttaja($tunnus, $salasana){
         DB::query('INSERT INTO Kayttaja (tunnus, salasana, rekist_aika) VALUES  (:ktun, :pw, :aika)',
-                array('ktun' => $tunnus, 'pw' => $salasana, 'aika' => Kayttaja::haeNykyHetki()));
+                array('ktun' => $tunnus, 'pw' => $salasana, 'aika' => self::haeNykyHetki()));
     }
     
     public static function tunnistaKayttaja($tunnus, $salasana){
@@ -67,8 +67,4 @@ class Kayttaja extends BaseModel{
         }
     }
     
-    //palauttaa nykyhetken suomen ajassa Postgresql:lle sopivassa muodossa '2001-09-11 08:46:06'
-    private static function haeNykyHetki(){
-        return date("Y-m-d H:i:s");
-    }
 }

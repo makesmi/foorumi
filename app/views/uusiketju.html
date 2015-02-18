@@ -2,19 +2,19 @@
 
 
 {% block content %}
-<h2>Uusi viestiketju aihealueeseen <a href="#">Ohjelmointi</a></h2>
+<h2>Uusi viestiketju aihealueeseen <a href="{{aluelinkki}}">{{aihealue.nimi}}</a></h2>
 <br>
 
-<form>
+<form method="post" action="{{base_path}}/luo_ketju/{{aihealue.id}}">
     
     <div class="form-group">
-        <label>Viestiketjun otsikko:</label>
-        <input type="text" class="form-control">
+        <label for="otsikko">Viestiketjun otsikko:</label>
+        <input name="otsikko" id="otsikko" type="text" class="form-control">
     </div>
     
     <div class="form-group">
-        <label>Aloitusviesti:</label>
-        <textarea class="form-control" rows="9"></textarea>
+        <label for="viesti">Aloitusviesti:</label>
+        <textarea name="viesti" id="viesti" class="form-control" rows="9"></textarea>
     </div>
        <button type="submit" class="btn btn-default">Luo</button>
 </form>

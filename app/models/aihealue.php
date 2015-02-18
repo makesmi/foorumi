@@ -25,6 +25,16 @@ class Aihealue extends BaseModel{
                 array('nimi' => $nimi, 'selitys' => $selitys));
     }
     
+    public static function haeTunnuksella($id){
+        $rivit = DB::query('SELECT * FROM Aihealue WHERE id=:id', 
+                array('id' => $id));
+        if(isset($rivit[0])){
+            return new Aihealue($rivit[0]);
+        }else{
+            return null;
+        }
+    }
+    
     public static function haeAlueet(){
         $rivit = DB::query('SELECT * FROM Aihealue');
         $alueet = array();

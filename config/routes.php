@@ -1,11 +1,12 @@
 <?php
 
+/* GET-reitit */
+
   $app->get('/', function() {
-    HelloWorldController::etusivu();
+      AlueOhjain::etusivu();
   });
 
   $app->get('/hiekkalaatikko', function() {
-//      TestiOhjain::hiekkalaatikko();
     KayttajaOhjain2::testi();
   });
   
@@ -25,12 +26,24 @@
       HelloWorldController::aihealue();
   });
   
+  $app->get('/aihealue/:id', function($id){
+      AlueOhjain::naytaAlue($id); 
+  });
+  
   $app->get('/viestiketju', function() {      
       HelloWorldController::viestiketju();
   });
   
-  $app->get('/uusiketju', function() {
+  $app->get('/viestiketju/:id', function($id) {
+      KetjuOhjain::naytaKetju($id);
+  });
+  
+  $app->get('/uusi_ketju', function() {
       HelloWorldController::uusiKetju();
+  });
+  
+  $app->get('/uusi_ketju/:alueid', function($alueid){
+      KetjuOhjain::ketjunLuonti($alueid);
   });
   
   $app->get('/kayttajat', function() {
@@ -57,6 +70,9 @@
      AlueOhjain::poistaAlue($id);
  });
  
+ 
+ /* POST -reitit */
+ 
  $app->post('/kirjaudu', function(){
      KayttajaOhjain::kirjaudu();
  });
@@ -71,6 +87,10 @@
  
  $app->post('/uusi_alue', function(){
      AlueOhjain::uusiAlue();
+ });
+ 
+ $app->post('/luo_ketju/:alueid', function($alueid){
+     KetjuOhjain::luoKetju($alueid);
  });
  
  

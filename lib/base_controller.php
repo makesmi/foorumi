@@ -92,5 +92,6 @@ require_once 'app/models/kayttaja.php';
 
       return '/' . $base_folder;
     }
+ 
 
   }

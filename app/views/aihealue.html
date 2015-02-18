@@ -5,7 +5,7 @@
 <h2>{{aihealue.nimi}}<br><small>{{aihealue.selitys}}</small></h2>
 
 {% if kirjautunut_kayttaja %}
-    <button>uusi viestiketju</button>
+    <a class="btn btn-default" href="{{base_path}}/uusi_ketju/{{aihealue.id}}">uusi viestiketju</a>
 {% endif %}
 <br />
 <br />

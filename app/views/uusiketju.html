@@ -6,7 +6,7 @@
 <br>
 
 <form method="post" action="{{base_path}}/luo_ketju/{{aihealue.id}}">
-    
+    <input type="hidden" name="kirjoittaja" value="{{kirjautunut_kayttaja.tunnus}}">
     <div class="form-group">
         <label for="otsikko">Viestiketjun otsikko:</label>
         <input name="otsikko" id="otsikko" type="text" class="form-control">

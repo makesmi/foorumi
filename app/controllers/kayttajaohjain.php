@@ -1,6 +1,5 @@
 <?php
 
-require_once 'app/models/kayttaja.php';
 
 class KayttajaOhjain extends BaseController{
 

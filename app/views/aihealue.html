@@ -23,11 +23,10 @@
         <tbody>
             <!-- tähän tulee viestiketjut -->
             <tr>
-                <td><a href="#"><strong>{{ketju.otsikko}}</strong></a></td>
+                <td><a href="{{base_path}}/viestiketju/{{ketju.id}}"><strong>{{ketju.otsikko}}</strong></a></td>
                 <td>{{viesteja[ketju.id]}}</td>
                 <td>{{aloittajat[ketju.id]}}</td>
             </tr>
-
         </tbody>
     {% endfor %}
         

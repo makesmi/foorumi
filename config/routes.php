@@ -93,4 +93,6 @@
      KetjuOhjain::luoKetju($alueid);
  });
  
- 
+ $app->post('/luo_viesti/:viestiid', function($viestiid){
+     ViestiOhjain:: luoViesti($viestiid);
+ });

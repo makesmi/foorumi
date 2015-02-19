@@ -33,6 +33,16 @@ class Viesti extends BaseModel{
                 array('viestiid' => $this->id));
     }
     
+    public static function haeTunnuksella($viestiid){
+        $rivit = DB::query('SELECT * FROM Viesti WHERE id=:id',
+                array('id' => $viestiid));
+        if(isset($rivit[0])){
+            return new Viesti($rivit[0]);
+        }else{
+            return null;
+        }
+    }
+    
     /* parametreiksi tulee ketjun id ja kirjoittajan tunnus */
     /* palauttaa luodun viestin id:n */
     public static function lisaaViesti($ketjuid, $kirjoittaja, $sisalto){

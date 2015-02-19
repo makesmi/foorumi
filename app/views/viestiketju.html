@@ -2,41 +2,36 @@
 
 
 {% block content %}
-<h2>paras järjestämisalgoritmi?
-    &ensp;<small>- viestiketju aihealueessa <a href="#">Ohjelmointi</a></small>
+<h2>{{viestiketju.otsikko}}
+    &ensp;<small>- viestiketju aihealueessa 
+        <a href="{{aluelinkki}}">{{aluenimi}}</a></small>
 </h2>
 
-<div style="background-color: #d6ebe0">
-    <blockquote>
-    <ul class="list-inline">
-        <li><strong>Janne</strong></li>
-        <li>4.2.2015</li>
-        <li>15:45</li>
-    </ul>
-    <p>
-        Hei mikä on teidän mielestä paras järjestämisalgoritmi?
-    </p>
-    </blockquote>
-</div>
-<div style="background-color: #d6ebe0">
-    <blockquote>
-    <ul class="list-inline">
-        <li><strong>Kepa</strong></li>
-        <li>4.2.2015</li>
-        <li>18:09</li>
-    </ul>
-    <p>
-        Lisäysjärjestäminen on paras, koska se on niin nopea. Se on myös helppo koodata.
-    </p>
-    </blockquote>
-</div>
-
-<form>
-    <div class="form-group">
-        <label>Uusi viesti:</label>
-        <textarea class="form-control" rows="7"></textarea>
+{% for viesti in viestit %}
+    <div style="background-color: #d6ebe0">
+        <blockquote>
+        <ul class="list-inline">
+            <li><strong>{{viesti.kirjoittaja}}</strong></li>
+            <li><small>{{pvm[viesti.id]}}</small></li>
+            <li><small>{{aika[viesti.id]}}</small></li>
+        </ul>
+        <p>
+            {{viesti.sisalto}}
+        </p>
+        </blockquote>
     </div>
-       <button type="submit" class="btn btn-default">Lisää</button>
-</form>
+{% endfor %}
+
+
+{% if kirjautunut_kayttaja %}
+    <form method="post" action="{{base_path}}/luo_viesti/{{viestiketju.id}}">
+        <input type="hidden" name="kirjoittaja" value="{{kirjautunut_kayttaja.tunnus}}">
+        <div class="form-group">
+            <label for="sisalto">Uusi viesti:</label>
+            <textarea id="sisalto" name="sisalto" class="form-control" rows="6"></textarea>
+        </div>
+           <button type="submit" class="btn btn-default">Lisää</button>
+    </form>
+{% endif %}
 
 {% endblock %}

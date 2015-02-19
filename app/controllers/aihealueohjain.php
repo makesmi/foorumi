@@ -1,12 +1,11 @@
 <?php
 
-require 'app/models/aihealue.php';
-require 'app/models/viestiketju.php';
 
 
 class AlueOhjain extends BaseController{
     
     public function etusivu($tila = null){
+        
         $alueet = Aihealue::haeAlueet();
         $linkit = array();
         $viesteja = array();
@@ -24,22 +23,29 @@ class AlueOhjain extends BaseController{
     }
     
     public static function naytaAlue($id){
-        $alue = AiheAlue::haeTunnuksella($id);
-        $aloittajat = array();
-        $viesteja = array();
-        $viestiketjut = Viestiketju::haeKetjut($alue);
+        $alue = Aihealue::haeTunnuksella($id);
         
-        foreach($viestiketjut as $avain => $ketju){
-            $aloittajat[$ketju->id] = $ketju->aloittajanTunnus();
-            $viesteja[$ketju->id] = $ketju->viesteja();
+        if($alue == null){
+            self::render_view('etusivu.html', 
+                    array('virheviesti' => 'aihealuetta ei löytynyt!'));
+        }else{        
+            $aloittajat = array();
+            $viesteja = array();
+            $viestiketjut = Viestiketju::haeKetjut($alue);
+
+            foreach($viestiketjut as $avain => $ketju){
+                $aloittajat[$ketju->id] = $ketju->aloittajanTunnus();
+                $viesteja[$ketju->id] = $ketju->viesteja();
+            }
+
+            self::render_view('aihealue.html', array('aihealue' => $alue, 
+                'aloittajat' => $aloittajat, 'viesteja' => $viesteja,
+                'viestiketjut' => $viestiketjut));
         }
-        
-        self::render_view('aihealue.html', array('aihealue' => $alue, 
-            'aloittajat' => $aloittajat, 'viesteja' => $viesteja));
     }
     
     public static function poistaAlue($id){
-        AiheAlue::poistaAlue($id);
+        Aihealue::poistaAlue($id);
         self::render_view('etusivu.html', 
                 array('ilmoitusviesti' => 'aihealue poistettu.'));
     }

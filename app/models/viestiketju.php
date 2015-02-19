@@ -10,16 +10,17 @@ class Viestiketju extends BaseModel{
     
     /* palautaa luodun ketjun id:n */
     public static function lisaaKetju($aihealueid, $otsikko){
-        $rivit = DB::query('INSERT INTO Viestiketju () values (:alue, :otsikko) RETURNING id',
+        $rivit = DB::query('INSERT INTO Viestiketju (alue, otsikko) values (:alue, :otsikko) RETURNING id',
                 array('alue' => $aihealueid, 'otsikko' => $otsikko));
         
-        return new $rivit[0][0];
+        return $rivit[0][0];
     }
     
     public static function haeKetjut($aihealue){
         $rivit = DB::query('SELECT * FROM Viestiketju WHERE alue = :alue',
                 array('alue' => $aihealue->id));
         $ketjut = array();
+
         foreach($rivit as $avain => $rivi){
             $ketjut[] = new Viestiketju($rivi);
         }

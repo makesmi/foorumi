@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<h2>Muokkaa viestiä ketjussa <a href="#">{{ketjuotsikko}}</a></h2>
+<br>
+
+<form method="post" action="{{base_path}}/muokkaa_viestia/{{viesti.id}}">
+    <div class="form-group">
+        <textarea class="form-control" name="sisalto" rows="9">{{viesti.sisalto}}</textarea>
+    </div>
+       <button type="submit" class="btn btn-default">Tallenna</button>
+</form>
+
+{% endblock %}

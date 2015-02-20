@@ -23,7 +23,11 @@
                 <td><h3><a href="{{linkki[alue.id]}}">{{alue.nimi}}</a><br>
                         <small>{{alue.selitys}}</small></h3></td>
                 <td>{{ketjuja[alue.id]}}</td>
-                <td>{{viesteja[alue.id]}}</td>
+                <td>{{viesteja[alue.id]}}
+                    {% if lukemattomia[alue.id] > 0 %}
+                        &ensp;<font color="#AA7700"><strong>[lukematta {{lukemattomia[alue.id]}}]</strong></font>
+                    {% endif %}
+                </td>
                 {% if kirjautunut_yllapitaja %}
                     <td><a class="btn btn-default" href="{{base_path}}/poista_alue/{{alue.id}}">poista</a></td>
                 {% endif %}

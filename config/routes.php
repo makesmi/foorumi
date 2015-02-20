@@ -54,9 +54,14 @@
       KayttajaOhjain::rekisterointilomake($tila);
   });
 
-  $app->get('/muokkaus', function() {
-      HelloWorldController::muokkaus();
+  $app->get('/muokkaus/:viestiid', function($viestiid) {
+      ViestiOhjain::muokkausLomake($viestiid);
   });
+  
+  $app->get('/poista_viesti/:viestiid', function($viestiid) {
+      ViestiOhjain::poistaViesti($viestiid);
+  });
+  
   
   $app->get('/virhe', function() {
       HelloWorldController::virhe();
@@ -64,7 +69,7 @@
  
  $app->get('/kirjaudu_ulos', function(){
      KayttajaOhjain::kirjaudu_ulos();
-});
+ });
  
  $app->get('/poista_alue/:id', function($id){
      AlueOhjain::poistaAlue($id);
@@ -96,3 +101,9 @@
  $app->post('/luo_viesti/:viestiid', function($viestiid){
      ViestiOhjain:: luoViesti($viestiid);
  });
+ 
+ $app->post('/muokkaa_viestia/:viestiid', function($viestiid){
+     ViestiOhjain::kasitteleMuokkaus($viestiid);
+ });
+ 
+ 

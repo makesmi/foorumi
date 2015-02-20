@@ -18,7 +18,7 @@ CREATE TABLE Aihealue(
 CREATE TABLE Viestiketju(
 	id SERIAL PRIMARY KEY,
 	otsikko varchar(128) NOT NULL,
-	alue integer REFERENCES Aihealue(id)
+	alue integer REFERENCES Aihealue(id) ON DELETE CASCADE
 );
 
 
@@ -27,13 +27,13 @@ CREATE TABLE Viesti(
 	sisalto varchar(5000) NOT NULL,
 	aika timestamp NOT NULL,
 	muokkausaika timestamp DEFAULT NULL,
-	ketju integer REFERENCES Viestiketju(id),
-	kirjoittaja varchar(32) REFERENCES Kayttaja(tunnus)
+	ketju integer REFERENCES Viestiketju(id) ON DELETE CASCADE,
+	kirjoittaja varchar(32) REFERENCES Kayttaja(tunnus) ON DELETE CASCADE
 );
 
 
 CREATE TABLE Luettu(
-	kayttaja varchar(32) NOT NULL REFERENCES Kayttaja(tunnus),
-	viesti INTEGER NOT NULL REFERENCES Viesti(id),
+	kayttaja varchar(32) NOT NULL REFERENCES Kayttaja(tunnus) ON DELETE CASCADE,
+	viesti INTEGER NOT NULL REFERENCES Viesti(id) ON DELETE CASCADE,
         PRIMARY KEY(kayttaja, viesti)
 );

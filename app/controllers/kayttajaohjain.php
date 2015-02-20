@@ -56,7 +56,7 @@ class KayttajaOhjain extends BaseController{
             self::redirect_to('/rekist/eri_salasana');
         }else{
             Kayttaja::lisaaKayttaja($tunnus, $salasana);
-            self::redirect_to('/etusivu');
+            self::redirect_to('/etusivu', array('ilmoitusviesti' => 'rekisteröityminen onnistui, nyt voit kirjautua sisään!'));
         }
     }
     

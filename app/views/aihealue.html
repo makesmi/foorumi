@@ -23,8 +23,19 @@
         <tbody>
             <!-- tähän tulee viestiketjut -->
             <tr>
-                <td><a href="{{base_path}}/viestiketju/{{ketju.id}}"><strong>{{ketju.otsikko}}</strong></a></td>
-                <td>{{viesteja[ketju.id]}}</td>
+                <td><a href="{{base_path}}/viestiketju/{{ketju.id}}">
+                        
+                    {% if lukematta[ketju.id] > 0 %}    
+                        <strong>{{ketju.otsikko}}</strong>
+                    {% else %}
+                        {{ketju.otsikko}}
+                    {% endif %}
+                    </a></td>
+                <td>{{viesteja[ketju.id]}}
+                {% if lukematta[ketju.id] > 0 %}
+                    &ensp;<font color="#AA7700"><strong>[lukematta {{lukematta[ketju.id]}}]</strong></font>
+                {% endif %}
+                </td>
                 <td>{{aloittajat[ketju.id]}}</td>
             </tr>
         </tbody>
@@ -32,3 +43,4 @@
         
 </table>
 {% endblock %}
+

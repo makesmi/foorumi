@@ -12,12 +12,22 @@
         <blockquote>
         <ul class="list-inline">
             <li><strong>{{viesti.kirjoittaja}}</strong></li>
-            <li><small>{{pvm[viesti.id]}}</small></li>
-            <li><small>{{aika[viesti.id]}}</small></li>
+            <li><small>{{pvm[viesti.id]}}&ensp;
+                    {{aika[viesti.id]}}</small></li>
+            {% if muokattu[viesti.id] %}
+                <li><small>muokattu viimeksi&ensp;{{muokkauspvm[viesti.id]}}&ensp;
+                    {{muokkausaika[viesti.id]}}</small></li>
+            {% endif %}
         </ul>
         <p>
             {{viesti.sisalto}}
         </p>
+        {% if kirjautunut_kayttaja.tunnus == viesti.kirjoittaja %}
+            <a class="btn btn-default" href="{{base_path}}/muokkaus/{{viesti.id}}">muokkaa</a>
+        {% endif %}
+        {% if kirjautunut_kayttaja.tunnus == viesti.kirjoittaja or kirjautunut_yllapitaja %}
+            <a class="btn btn-default" href="{{base_path}}/poista_viesti/{{viesti.id}}">poista</a>
+        {% endif %}
         </blockquote>
     </div>
 {% endfor %}

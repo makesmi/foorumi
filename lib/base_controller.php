@@ -93,5 +93,24 @@ require_once 'app/models/kayttaja.php';
       return '/' . $base_folder;
     }
  
+    
+    //nämä funktiot palauttavat ajan ja päivämäärän postgresql:llän aikaleimasta
+    //suomalaisessa muodossa 11.9.2001 ja 10:55:05
+    public static function haeAika($aikaLeima){
+        return date('H:i:s', strtotime($aikaLeima));
+    }
+    
+    public static function haePvm($aikaLeima){
+        return date('d.m.Y', strtotime($aikaLeima));
+    }
 
+    /**
+     * jos ehto ei täyty, käyttäjä ohjataan etusivulle ja näytetään virheviesti
+     */
+    public static function tarkista($ehto, $virheViesti){
+        if(!$ehto){
+            self::redirect_to('/etusivu', array('virheviesti' => $virheViesti));
+            exit();
+        }
+    }
   }

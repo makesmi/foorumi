@@ -30,16 +30,9 @@
       AlueOhjain::naytaAlue($id); 
   });
   
-  $app->get('/viestiketju', function() {      
-      HelloWorldController::viestiketju();
-  });
   
   $app->get('/viestiketju/:id', function($id) {
       KetjuOhjain::naytaKetju($id);
-  });
-  
-  $app->get('/uusi_ketju', function() {
-      HelloWorldController::uusiKetju();
   });
   
   $app->get('/uusi_ketju/:alueid', function($alueid){

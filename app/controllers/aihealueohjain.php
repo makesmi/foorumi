@@ -72,6 +72,9 @@ class AlueOhjain extends BaseController{
         $otsikko = $parametrit['otsikko'];
         $selitys = $parametrit['selitys'];
         
+        self::tarkista( strlen($otsikko) <= 30, "aihealueen otsikko saa olla enintään 30 merkkiä pitkä!");
+        self::tarkista(strlen($selitys) <= 100, "aihealueen selitys saa olla enintään 100 merkkiä pitkä!");
+        
         Aihealue::lisaaAlue($otsikko, $selitys);
         
         self::redirect_to('/etusivu');

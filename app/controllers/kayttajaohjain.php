@@ -56,7 +56,8 @@ class KayttajaOhjain extends BaseController{
             self::redirect_to('/rekist/eri_salasana');
         }else{
             Kayttaja::lisaaKayttaja($tunnus, $salasana);
-            self::redirect_to('/etusivu', array('ilmoitusviesti' => 'rekisteröityminen onnistui, nyt voit kirjautua sisään!'));
+            $_SESSION['kayttaja'] = $tunnus;
+            self::redirect_to('/etusivu', array('ilmoitusviesti' => 'rekisteröityminen onnistui!'));
         }
     }
     
@@ -86,6 +87,8 @@ class KayttajaOhjain extends BaseController{
             $kayttaja->asetaYllapitajaksi(true);
         }else if($muutos == 'poista ylläpitäjä'){
             $kayttaja->asetaYllapitajaksi(false);
+        }else if($muutos == 'poista'){
+            $kayttaja->poista();
         }
         
         self::redirect_to('/kayttajat');

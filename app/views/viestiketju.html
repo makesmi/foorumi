@@ -19,14 +19,12 @@
                     {{muokkausaika[viesti.id]}}</small></li>
             {% endif %}
         </ul>
-        <p>
-            {{viesti.sisalto}}
-        </p>
+        <p>{{viesti.sisalto|nl2br}}</p>
         {% if kirjautunut_kayttaja.tunnus == viesti.kirjoittaja %}
-            <a class="btn btn-default" href="{{base_path}}/muokkaus/{{viesti.id}}">muokkaa</a>
+            <a class="btn btn-default btn-xs" href="{{base_path}}/muokkaus/{{viesti.id}}">muokkaa</a>
         {% endif %}
         {% if kirjautunut_kayttaja.tunnus == viesti.kirjoittaja or kirjautunut_yllapitaja %}
-            <a class="btn btn-default" href="{{base_path}}/poista_viesti/{{viesti.id}}">poista</a>
+            <a class="btn btn-default btn-xs" href="{{base_path}}/poista_viesti/{{viesti.id}}">poista</a>
         {% endif %}
         </blockquote>
     </div>

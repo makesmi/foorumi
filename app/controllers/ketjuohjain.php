@@ -54,6 +54,8 @@ class KetjuOhjain extends BaseController{
     }
     
     public static function luoKetju($alueid){
+        self::check_logged_in();
+        
         $parametrit = $_POST;
         $alue = Aihealue::haeTunnuksella($alueid);
         $otsikko = $parametrit['otsikko'];
@@ -71,3 +73,4 @@ class KetjuOhjain extends BaseController{
         return self::base_path() . '/aihealue/' . $alueid;
     }
 }
+

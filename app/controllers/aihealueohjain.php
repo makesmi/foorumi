@@ -62,9 +62,9 @@ class AlueOhjain extends BaseController{
     }
     
     public static function poistaAlue($id){
+        self::check_logged_in();
         Aihealue::poistaAlue($id);
-        self::render_view('etusivu.html', 
-                array('ilmoitusviesti' => 'aihealue poistettu.'));
+        self::etusivu();
     }
     
     public static function uusiAlue(){
